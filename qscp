@@ -1,0 +1,52 @@
+#!/bin/bash
+# qscp - quick-scp
+# Script to help copying a file via scp from one server to another
+# input: qscp PATH [DESTINATION_SERVER] [SOURCE_SERVER]
+# Parameters:
+#  PATH: path to a file or directory
+# optional:
+#  DESTINATION_SERVER: change from the default destination server set in .qscprc
+#  SOURCE_SERVER:  change from the default source server (which is local file/localhost)
+# Additional settings:
+#  KEY: ssh key to use
+
+DESTINATION=mojajungla.info
+KEY=~/.ssh/id_rsa
+EXE=/usr/bin/scp
+# Q_PATH - what to quick-scp
+Q_PATH=$1
+if [ -z $Q_PATH ]; then
+    echo "Usage: qscp PATH [DESTINATION_SERVER] [SOURCE_SERVER]"
+else
+    if [ -d $Q_PATH ]; then
+      EXE="$EXE -r"
+    elif [ -f $Q_PATH ]; then
+        EXE="$EXE"
+    else
+      echo "qscp: file does not exist."
+      exit 1
+    fi
+    Q_PATH=$(readlink -f $Q_PATH)
+fi
+if [ ! -z $2 ]; then
+  DESTINATION_SERVER="$2:"
+else
+  DESTINATION_SERVER="$DESTINATION:"
+fi
+if [ -z $3 ]; then
+  SOURCE_SERVER=
+else
+  SOURCE_SERVER="$3:"
+fi
+if [ -z $4 ]; then
+    SSH_KEY=$KEY
+else
+  if [ -f $4 ]; then
+    SSH_KEY=$4;
+  else 
+    SSH_KEY=$KEY
+  fi
+fi
+EXE="$EXE -i $SSH_KEY"
+echo "Copying: $EXE $SOURCE_SERVER$Q_PATH $DESTINATION_SERVER$Q_PATH"
+eval "$EXE $SOURCE_SERVER$Q_PATH $DESTINATION_SERVER$Q_PATH"
