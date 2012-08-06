@@ -11,6 +11,7 @@
 #  KEY: ssh key to use
 
 DESTINATION=zlayer.net
+SOURCE=zlayer.net
 KEY=~/.ssh/id_rsa
 EXE=/usr/bin/scp
 # Q_PATH - what to quick-scp
@@ -34,7 +35,7 @@ else
   DESTINATION_SERVER="$DESTINATION:"
 fi
 if [ -z $3 ]; then
-  SOURCE_SERVER=
+  SOURCE_SERVER="$SOURCE:"
 else
   SOURCE_SERVER="$3:"
 fi
