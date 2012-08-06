@@ -10,7 +10,7 @@
 # Additional settings:
 #  KEY: ssh key to use
 
-DESTINATION=mojajungla.info
+DESTINATION=zlayer.net
 KEY=~/.ssh/id_rsa
 EXE=/usr/bin/scp
 # Q_PATH - what to quick-scp
