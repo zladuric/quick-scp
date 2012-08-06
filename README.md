@@ -11,8 +11,11 @@ Example:
 ========
  qscp src/directory/file.js zlayer.net
 > Copying: /usr/bin/scp -i /home/zlatko/.ssh/id_rsa /home/zlatko/Programming/bash/src/directory/file.js zlayer.net:/home/zlatko/Programming/bash/src/directory/file.js
+
 > zlatko@zlayer.net's password:
+
 > file.js                                                             100%  1257  1.2KB/s 00:00
+
 
 -----------
 Parameters:
