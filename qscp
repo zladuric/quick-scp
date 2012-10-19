@@ -10,8 +10,8 @@
 # Additional settings:
 #  KEY: ssh key to use
 
-DESTINATION=zlayer.net
-SOURCE=arstempo.hr
+DESTINATION=
+SOURCE=
 KEY=~/.ssh/id_rsa
 EXE=/usr/bin/scp
 # Q_PATH - what to quick-scp
