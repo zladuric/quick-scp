@@ -10,14 +10,15 @@
 # Additional settings:
 #  KEY: ssh key to use
 
-DESTINATION=zlayer.net
-SOURCE=arstempo.hr
+DESTINATION=
+SOURCE=
 KEY=~/.ssh/id_rsa
 EXE=/usr/bin/scp
 # Q_PATH - what to quick-scp
 Q_PATH=$1
 if [ -z $Q_PATH ]; then
     echo "Usage: qscp PATH [DESTINATION_SERVER] [SOURCE_SERVER]"
+    exit
 else
     if [ -d $Q_PATH ]; then
       EXE="$EXE -r"
@@ -49,5 +50,6 @@ else
   fi
 fi
 EXE="$EXE -i $SSH_KEY"
-echo "Copying: $EXE $SOURCE_SERVER$Q_PATH $DESTINATION_SERVER$Q_PATH"
-eval "$EXE $SOURCE_SERVER$Q_PATH $DESTINATION_SERVER$Q_PATH"
+EXECUTE_STR="$EXE $SOURCE_SERVER$Q_PATH $DESTINATION_SERVER$Q_PATH"
+echo "Copying: " $EXECUTE_STR
+eval "$EXECUTE_STR"
