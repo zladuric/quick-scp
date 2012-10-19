@@ -18,6 +18,7 @@ EXE=/usr/bin/scp
 Q_PATH=$1
 if [ -z $Q_PATH ]; then
     echo "Usage: qscp PATH [DESTINATION_SERVER] [SOURCE_SERVER]"
+    exit
 else
     if [ -d $Q_PATH ]; then
       EXE="$EXE -r"
